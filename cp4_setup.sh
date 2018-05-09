@@ -21,8 +21,9 @@ install_essentials(){
 
 app_setup(){
 	echo ============================================= start application ==============================================================
+	cd ..
     git clone https://github.com/philophilo/yummy-react.git # clone the repo
-    cd yummy_react
+    cd yummy-react
     npm install # install dependencies in packages.json
     npm start # start application
 }
