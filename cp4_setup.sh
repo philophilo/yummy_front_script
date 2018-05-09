@@ -1,4 +1,4 @@
-update_python(){
+update_ubuntu(){
 	echo ============================================= update ubuntu  ================================================================
     sudo apt-get update # update source list for packages and versions that can be installed
 }
@@ -21,8 +21,8 @@ install_essentials(){
 
 
 install_server(){
-	echo ============================================== install gunicorn and nginx ====================================================
-	sudo apt-get install -y nginx gunicorn
+	echo ============================================== install nginx =================================================================
+	sudo apt-get install -y nginx
 }
 
 nginx_setup(){
@@ -49,6 +49,8 @@ run(){
     install_npm
     install_nodejs
     install_essentials
+    install_server
+    nginx_setup
     app_setup
 }
 
