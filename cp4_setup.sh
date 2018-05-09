@@ -28,7 +28,7 @@ install_server(){
 nginx_setup(){
     echo ================================================= nginx setup ================================================================
     sudo systemctl start nginx # start nginx
-    sudo cp ../yummy_api_script/yummy /etc/nginx/sites-available/ # copy nginx config to available sites
+    sudo cp yummy /etc/nginx/sites-available/ # copy nginx config to available sites
     sudo rm -rf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default # remove default nginx configurations
     sudo ln -s /etc/nginx/sites-available/yummy /etc/nginx/sites-enabled/ # create symbolic link to nginx new configuration
     sudo systemctl restart nginx # restart nginx
