@@ -19,6 +19,22 @@ install_essentials(){
     sudo apt-get install -y build-essential # references all the packages needed to compile a debian package
 }
 
+
+install_server(){
+	echo ============================================== install gunicorn and nginx ====================================================
+	sudo apt-get install -y nginx gunicorn
+}
+
+nginx_setup(){
+    echo ================================================= nginx setup ================================================================
+    sudo systemctl start nginx # start nginx
+    sudo cp ../yummy_api_script/yummy /etc/nginx/sites-available/ # copy nginx config to available sites
+    sudo rm -rf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default # remove default nginx configurations
+    sudo ln -s /etc/nginx/sites-available/yummy /etc/nginx/sites-enabled/ # create symbolic link to nginx new configuration
+    sudo systemctl restart nginx # restart nginx
+    sudo systemctl status nginx
+}
+
 app_setup(){
 	echo ============================================= start application ==============================================================
 	cd ..
