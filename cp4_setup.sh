@@ -1,11 +1,11 @@
 update_ubuntu(){
 	echo ============================================= update ubuntu  ================================================================
-    sudo apt-get update # update source list for packages and versions that can be installed
+    sudo apt-get -y update # update source list for packages and versions that can be installed
 }
 
 install_npm(){
 	echo ============================================= installing npm ==============================================================
-    sudo apt-get install npm # install npm
+    sudo apt-get install -y npm # install npm
 }
 
 install_nodejs(){
@@ -58,7 +58,7 @@ setup_supervisor(){
 app_setup(){
 	echo ============================================= start application ==============================================================
 	cd ..
-    git clone https://github.com/philophilo/yummy-react.git # clone the repo
+    git clone -b production https://github.com/philophilo/yummy-react.git # clone the repo
     cd yummy-react
     npm install # install dependencies in packages.json
 }
