@@ -31,8 +31,28 @@ nginx_setup(){
     sudo cp yummy /etc/nginx/sites-available/ # copy nginx config to available sites
     sudo rm -rf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default # remove default nginx configurations
     sudo ln -s /etc/nginx/sites-available/yummy /etc/nginx/sites-enabled/ # create symbolic link to nginx new configuration
+    # sudo systemctl restart nginx # restart nginx
+    # sudo systemctl status nginx
+}
+
+setup_ssh_certbot(){
+    echo ================================================= certbot setup ============================================================
+    sudo add-apt-repository -y ppa:certbot/certbot
+    sudo apt-get update
+    sudo pip install cffi
+    sudo apt-get install -y python-certbot-nginx
+    sudo certbot --nginx
+}
+
+start_nginx(){
     sudo systemctl restart nginx # restart nginx
     sudo systemctl status nginx
+}
+
+setup_supervisor(){
+    echo ================================================= supervisor setup ============================================================
+    sudo apt-get install -y supervisor
+    sudo cp front.conf /etc/supervisor/conf.d/yummy.conf
 }
 
 app_setup(){
@@ -41,7 +61,20 @@ app_setup(){
     git clone https://github.com/philophilo/yummy-react.git # clone the repo
     cd yummy-react
     npm install # install dependencies in packages.json
-    npm start # start application
+}
+
+start_app(){
+    echo ================================================= start with gunicorn ======================================================
+    sudo supervisorctl reread
+    sudo supervisorctl update
+    sudo supervisorctl start yummy
+    # fix ubuntu 16.04 bug, race between systemd and nginx. 
+    # As if systemd expects the PID file to be populated before nginx has the time to create it.
+    sudo mkdir /etc/systemd/system/nginx.service.d
+    printf "[Service]\nExecStartPost=/bin/sleep 0.1\n" > override.conf
+    sudo mv override.conf /etc/systemd/system/nginx.service.d/override.conf
+    sudo systemctl daemon-reload
+    sudo systemctl restart nginx 
 }
 
 run(){
@@ -51,7 +84,11 @@ run(){
     install_essentials
     install_server
     nginx_setup
+    setup_ssh_certbot
+    start_nginx
+    setup_supervisor
     app_setup
+    start_app
 }
 
 run
