@@ -4,7 +4,7 @@ update_ubuntu(){
 }
 
 install_npm(){
-	echo ============================================= install python3.6 ==============================================================
+	echo ============================================= installing npm ==============================================================
     sudo apt-get install npm # install npm
 }
 
@@ -78,6 +78,7 @@ start_app(){
 }
 
 run(){
+    update_ubuntu
     update_python
     install_npm
     install_nodejs
