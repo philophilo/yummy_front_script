@@ -7,3 +7,5 @@ clone the repo
 change directory
 
 `cd yummy_front_script`
+
+More detailed explation on [here](https://medium.com/@phil.kwesiga/automate-deploying-python-flask-api-and-react-redux-frontend-to-aws-ec2-instances-ea17ea4a64a5)
