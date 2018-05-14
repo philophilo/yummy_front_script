@@ -1,5 +1,7 @@
 # yummy_front_script
 
+#### The script deploys the [yummy recipes frontend](https://github.com/philophilo/yummy-react)
+
 clone the repo
 
 `git clone https://github.com/philophilo/yummy_front_script.git`
@@ -12,4 +14,4 @@ Run the script
 
 `. cp4_setup.sh` or `source cp4_setup.sh`
 
-More detailed explanation on [here](https://medium.com/@phil.kwesiga/automate-deploying-python-flask-api-and-react-redux-frontend-to-aws-ec2-instances-ea17ea4a64a5)
+More detailed explanation [here](https://medium.com/@phil.kwesiga/automate-deploying-python-flask-api-and-react-redux-frontend-to-aws-ec2-instances-ea17ea4a64a5)
