@@ -2,11 +2,11 @@
 
 #### The script deploys the [yummy recipes frontend](https://github.com/philophilo/yummy-react)
 
-clone the repo
+Clone the repo
 
 `git clone https://github.com/philophilo/yummy_front_script.git`
 
-change directory
+Change directory
 
 `cd yummy_front_script`
 
