@@ -6,4 +6,4 @@ clone the repo
 
 change directory
 
-cd yummy_front_script
+`cd yummy_front_script`
